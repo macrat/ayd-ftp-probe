@@ -113,7 +113,7 @@ func TestCheck(t *testing.T) {
 		Target, Pattern string
 	}{
 		{"ftp://localhost:21021", "\tHEALTHY\t[.0-9]+\tftp://localhost:21021\tsucceed connect\n$"},
-		{"ftp://localhost:21022", "\tFAILURE\t[.0-9]+\tftp://localhost:21022\tdial tcp [^ ]+:21022: connect: connection refused\n$"},
+		{"ftp://localhost:21022", "\tFAILURE\t[.0-9]+\tftp://localhost:21022\tdial tcp [^ ]+:21022: [^\t]+\n$"},
 		{"ftp://hoge:fuga@localhost:21021", "\tHEALTHY\t[.0-9]+\tftp://hoge:xxxxx@localhost:21021\tsucceed connect and login\n$"},
 		{"ftp://invalid:user@localhost:21021", "\tFAILURE\t[.0-9]+\tftp://invalid:xxxxx@localhost:21021\t530 Incorrect password, not logged in\n$"},
 		{"ftp://hoge@localhost:21021", "\tFAILURE\t[.0-9]+\tftp://hoge@localhost:21021\t553 action aborted, required param missing\n$"},
