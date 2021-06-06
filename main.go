@@ -2,14 +2,30 @@ package main
 
 import (
 	"crypto/tls"
+	"flag"
 	"fmt"
 	"net/url"
 	"os"
+	"path/filepath"
 	"time"
 
 	"github.com/jlaffaye/ftp"
 	"github.com/macrat/ayd/lib-ayd"
 )
+
+var (
+	version     = "HEAD"
+	commit      = "UNKNOWN"
+	showVersion = flag.Bool("v", false, "show version info")
+)
+
+func init() {
+	flag.Usage = func() {
+		fmt.Println("FTP and FTPS protocol plugin for Ayd? status monitoring service.")
+		fmt.Println()
+		fmt.Printf("usage: %s TARGET_URL\n", filepath.Base(os.Args[0]))
+	}
+}
 
 func NormalizeURL(u *url.URL) *url.URL {
 	normalized := &url.URL{
@@ -61,9 +77,16 @@ func Check(logger ayd.Logger, target *url.URL) {
 }
 
 func main() {
+	flag.Parse()
+
+	if *showVersion {
+		fmt.Printf("ayd-ftp-probe %s (%s)\n", version, commit)
+		return
+	}
+
 	args, err := ayd.ParseProbePluginArgs()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "$ %s TARGET_URL\n", os.Args[0])
+		fmt.Fprintf(os.Stderr, "usage: %s TARGET_URL\n", filepath.Base(os.Args[0]))
 		os.Exit(2)
 	}
 
