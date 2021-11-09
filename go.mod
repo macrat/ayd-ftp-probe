@@ -1,6 +1,6 @@
 module github.com/macrat/ayd-ftp-probe
 
-go 1.16
+go 1.17
 
 require (
 	github.com/jlaffaye/ftp v0.0.0-20211029032751-b1140299f4df
