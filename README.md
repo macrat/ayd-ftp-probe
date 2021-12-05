@@ -4,6 +4,11 @@ Ayd? FTP Probe
 FTP and FTPS check plugin for [Ayd?](https://github.com/macrat/ayd) status monitoring service.
 
 
+**IMPORTANT:**
+This plugin is no longer maintained because Ayd version 0.13.0 or later supports FTP/FTPS protocol.
+You can use FTP without any plugin!
+
+
 ## Install
 
 1. Download binary from [release page](https://github.com/macrat/ayd-ftp-probe/releases).
